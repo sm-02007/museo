@@ -1,0 +1,207 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --lila:     #c8a8e9;
+  --lila-deep:#9b6abf;
+  --lila-soft:#ecdff7;
+  --lila-pale:#f8f2ff;
+  --rose:     #e8b4c8;
+  --rose-soft:#fce8f0;
+  --cream:    #fdf9ff;
+  --ink:      #3a2a4a;
+  --muted:    #9e89b0;
+}
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── PETAL BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(200,168,233,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(232,180,200,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(236,223,247,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── FLOATING PETALS ── */
+.petal {
+  position: fixed; pointer-events: none; z-index: 0;
+  font-size: 1.2rem; opacity: 0;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0%   { transform: translateY(-60px) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.55; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ── WRAPPER ── */
+.wrapper {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ── HEADER ── */
+.eyebrow {
+  font-size: 0.65rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--lila-deep);
+  margin-bottom: 1rem;
+  animation: fadeUp 0.9s ease both;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-weight: 300; line-height: 0.9;
+  text-align: center; color: var(--ink);
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.title em {
+  font-style: italic; color: var(--lila-deep);
+  display: block;
+}
+
+.deco-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2.2rem 0 1.8rem;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+.deco-divider .line {
+  width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--lila));
+}
+.deco-divider .line.right {
+  background: linear-gradient(to left, transparent, var(--lila));
+}
+.deco-divider .flower { font-size: 1.1rem; }
+
+.subtitle {
+  font-size: 0.75rem; letter-spacing: 0.18em;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 3.5rem;
+  animation: fadeUp 0.9s 0.25s ease both;
+}
+
+/* ── CARDS ── */
+.cards {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.9s 0.4s ease both;
+}
+
+.card {
+  position: relative;
+  width: 220px;
+  text-decoration: none; color: inherit;
+  background: rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(200,168,233,0.35);
+  backdrop-filter: blur(8px);
+  padding: 2.4rem 1.8rem 2rem;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 1rem;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2),
+              box-shadow 0.35s,
+              border-color 0.3s,
+              background 0.3s;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(200,168,233,0.15), rgba(232,180,200,0.1));
+  opacity: 0; transition: opacity 0.35s;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(155,106,191,0.2), 0 4px 16px rgba(155,106,191,0.12);
+  border-color: var(--lila);
+  background: rgba(255,255,255,0.88);
+}
+.card:hover::before { opacity: 1; }
+
+.card::after {
+  content: '';
+  position: absolute; top: -50%; left: -60%;
+  width: 40%; height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  opacity: 0; transition: opacity 0.1s;
+}
+.card:hover::after {
+  opacity: 1;
+  animation: shimmer 0.6s ease forwards;
+}
+
+@keyframes shimmer {
+  to { left: 140%; }
+}
+
+.card:nth-child(1) { border-color: rgba(200,168,233,0.4); }
+.card:nth-child(2) { border-color: rgba(232,180,200,0.4); }
+.card:nth-child(3) { border-color: rgba(244,167,192,0.4); }
+
+.card-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 2px 8px rgba(155,106,191,0.3));
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+  position: relative; z-index: 1;
+}
+.card:hover .card-icon { transform: scale(1.15) rotate(-5deg); }
+
+.card-num {
+  font-size: 0.55rem; letter-spacing: 0.25em;
+  color: var(--lila-deep); text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+.card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; line-height: 1.15;
+  color: var(--ink); position: relative; z-index: 1;
+}
+
+.card-arrow {
+  font-size: 1rem; color: var(--lila-deep);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.25s, transform 0.25s;
+  position: relative; z-index: 1;
+}
+.card:hover .card-arrow { opacity: 1; transform: translateY(0); }
+
+/* ── FOOTER ── */
+.footer-note {
+  margin-top: 3.5rem;
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  color: var(--muted); text-align: center;
+  animation: fadeUp 0.9s 0.6s ease both;
+}
+.footer-note span { color: var(--lila-deep); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .cards { flex-direction: column; align-items: center; }
+  .card  { width: 88vw; flex-direction: row; text-align: left; padding: 1.5rem; }
+  .card-arrow { display: none; }
+}
