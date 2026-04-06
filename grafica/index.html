@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico del Amor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <h1>Ecuación del Amor</h1>
+    <h2 id="funcion"><b> $$y = x^{2/3} + 0.9 \cdot \sin(k \cdot x) \cdot \sqrt{3 - x^2}$$ </b></h2>
+    <canvas id="loveChart" width="800" height="600">
+
+    </canvas>
+    <div class="controls">
+        <input type="range" min="1" max="150" value="5" id="sliderK">
+        <input type="button" value="Play" id="playBtn">
+    </div>
+</body>
+</html>

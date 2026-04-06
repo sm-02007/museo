@@ -1,0 +1,45 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #D8BFD8;
+    margin: 20px;
+}
+#loveChart {
+    border: 3px solid #7D3C98;
+    background-color: #fff;
+}
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+.controls input[type="range"] {
+    width: 200px;
+    height: 20px;
+    color: #C8A2C8;
+}
+.controls input[type="button"] {
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: #7D3C98;
+    border: none;
+    color: #C8A2C8;
+}
+.controls input[type="button"]:hover {
+    background-color: #D8BFD8;
+}
+h1 {
+    color: #7D3C98;
+    font-size: 72px;
+    margin-bottom: -10px;
+}
+h2 {
+    color: #7D3C98;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bolder;
+}
