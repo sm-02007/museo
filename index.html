@@ -6,6 +6,7 @@
   <title>Mi Museo Personal</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -25,6 +26,11 @@
 
     <p class="subtitle">Elige una sala para explorar</p>
 
+    <div class="tabs">
+  <button class="tab active" onclick="showSection('salas')">Salas</button>
+  <button class="tab" onclick="showSection('videos')">Videos</button>
+</div>
+<div id="salas" class="section active">
     <div class="cards">
 
       <a class="card" href="https://floresali.netlify.app/" target="_blank">
@@ -56,11 +62,41 @@
       </a>
 
     </div>
+</div>
+
+<div id="videos" class="section">
+  <div class="cards">
+
+    <!-- VIDEO 1 -->
+    <div class="card video-card" onclick="expandVideo(this)">
+      <div class="video-thumb">
+        <video src="videos/corazon.mp4" playsinline preload="metadata"></video>
+        <div class="play-overlay">▶</div>
+      </div>
+
+      <div class="card-num">Video 01</div>
+      <div class="card-name">Corazon Minecraft💜</div>
+    </div>
+
+    <!-- 🔥 PARA AGREGAR MÁS VIDEOS:
+    Copiá este bloque y cambiá:
+    - video1.mp4 → tu archivo
+    - nombre del video
+    -->
+    
+  </div>
+</div>
 
     <p class="footer-note">Hecho con <span>💜</span> especialmente para vos</p>
 
   </div>
 
-  <script src="script.js"></script>
+  
+  <div id="videoOverlay" class="video-overlay">
+    <div class="video-modal">
+      <button class="video-close" aria-label="Cerrar video">✕</button>
+      <video id="modalVideo" controls playsinline></video>
+    </div>
+  </div>
 </body>
 </html>
